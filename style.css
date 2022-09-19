@@ -162,7 +162,8 @@ img {
   display: flex;
   align-items: center;
   column-gap: 28px;
-  padding: 16px 32px;
+  height: 48px;
+  padding-inline: 32px;
   border-radius: 5px;
   background-color: var(--clr-primary);
   color: var(--clr-search-bar-text);
@@ -190,7 +191,8 @@ img {
 }
 @media screen and (min-width: 768px) {
   .search-bar {
-    width: 40%;
+    width: min(100%, 480px);
+    height: 56px;
     font-size: 16px;
   }
   .search-bar input {
@@ -217,7 +219,8 @@ img {
   justify-content: space-between;
   align-items: center;
   column-gap: 24px;
-  padding: 14px 24px;
+  height: 48px;
+  padding-inline: 24px;
 }
 .dropdown__trigger i {
   font-size: 10px;
@@ -235,6 +238,11 @@ img {
 }
 .dropdown__options li {
   padding: 4px 24px;
+}
+@media screen and (min-width: 768px) {
+  .dropdown__trigger {
+    height: 56px;
+  }
 }
 
 /* Countries Grid */
