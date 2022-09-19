@@ -1,16 +1,19 @@
-export default function SearchBar(searchBarElement) {
+export default function SearchBar(searchBarElement, inputCallback) {
     const input = searchBarElement.querySelector('input');
     input.addEventListener('input', e => {
-        console.log(input.value);
+        if (inputCallback != null)
+            inputCallback(input.value);
         if (input.value && input.value.length > 0) {
-            searchBarElement.dataset.hasInput = '';
+            searchBarElement.classList.add('is-filled');
         } else {
-            delete searchBarElement.dataset.hasInput;
+            searchBarElement.classList.remove('is-filled');
         }
     });
     const clear = searchBarElement.querySelector('.search-bar__clear');
     clear.addEventListener('click', e => {
         input.value = '';
-        delete searchBarElement.dataset.hasInput;
+        if (inputCallback != null)
+            inputCallback(input.value);
+        searchBarElement.classList.remove('is-filled');
     });
 }

@@ -1,12 +1,11 @@
 export default function ThemeToggle(themeToggleElement) {
     themeToggleElement.addEventListener('click', e => {
-        const root = document.body;
-        if (root.dataset.theme === 'dark') {
-            root.dataset.theme = 'light';
-            localStorage.setItem('theme', 'light');
+        document.body.classList.toggle('dark-mode');
+        const darkMode = localStorage.getItem('dark-mode');
+        if (darkMode) {
+            localStorage.removeItem('dark-mode')
         } else {
-            root.dataset.theme = 'dark';
-            localStorage.setItem('theme', 'dark');
+            localStorage.setItem('dark-mode', 'true');
         }
     });
 }
