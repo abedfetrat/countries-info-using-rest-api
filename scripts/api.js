@@ -1,21 +1,57 @@
-const baseApiEndpoint = 'https://restcountries.com/v3.1';
+const baseApiEndpoint = 'https://restcountries.com/v2';
 
 function sortCountries(countries) {
     return countries.sort((firstCountry, secondCountry) => {
-        const firstCountryName = firstCountry.name.common;
-        const secondCountryName = secondCountry.name.common;
+        const firstCountryName = firstCountry.name;
+        const secondCountryName = secondCountry.name;
         return firstCountryName.localeCompare(secondCountryName);
     });
 }
 
 export async function fetchAllCountries() {
     const allCountriesEndpoint = '/all';
-    const urlToFetch = baseApiEndpoint + allCountriesEndpoint;
+    const searchParams = '?fields=flags,name,population,region,capital,alpha3Code'
+    const urlToFetch = baseApiEndpoint + allCountriesEndpoint + searchParams;
     try {
         const response = await fetch(urlToFetch);
         if (response.ok) {
             const countries = await response.json();
             return sortCountries(countries);
+        }
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export async function fetchCountriesByCode(codes) {
+    const alphaEndpoint = '/alpha';
+    let searchParams = '?codes=';
+
+    searchParams += codes.join(',');
+
+    const urlToFetch = baseApiEndpoint + alphaEndpoint + searchParams;
+    try {
+        const response = await fetch(urlToFetch);
+        if (response.ok) {
+            const countries = await response.json();
+            return countries;
+        }
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export async function fetchCountryByCode(code) {
+    const alphaEndpoint = '/alpha';
+    const searchParam = '/' + code;
+    const urlToFetch = baseApiEndpoint + alphaEndpoint + searchParam;
+    try {
+        const response = await fetch(urlToFetch);
+        if (response.ok) {
+            const countries = await response.json();
+            return countries;
         }
     } catch (error) {
         console.error(error);

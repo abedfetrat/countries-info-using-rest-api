@@ -1,3 +1,7 @@
+import { fetchCountriesByCode, fetchCountryByCode } from "./api.js";
+
+let country;
+
 function createBorderCountriesList(borders) {
     const list = document.createElement('ul');
     for (let i = 0; i < borders.length; i++) {
@@ -8,38 +12,52 @@ function createBorderCountriesList(borders) {
     return list;
 }
 
+function retriveBorderCountries(borders) {
+    fetchCountriesByCode(borders).then(countries => {
+        if (countries) {
+            const countryNames = countries.map(country => country.name);
+            country.borderCountries = countryNames;
+            populateUI();
+        }
+    });
+}
+
 function retriveCountryData() {
-    const jsonString = sessionStorage.getItem('country');
-    const countryObject = JSON.parse(jsonString);
-    return countryObject;
+    const countryCode = sessionStorage.getItem('country-code');
+    fetchCountryByCode(countryCode).then(fetchedCountry => {
+        if (fetchedCountry) {
+            country = fetchedCountry;
+            const borderCountries = country.borders;
+            if (borderCountries) {
+                retriveBorderCountries(borderCountries)
+            }
+            populateUI();
+        }
+    });
 }
 
 function populateUI() {
-    const country = retriveCountryData();
-
-    console.log(country);
-
     // Data
-    const flag = country.flags ? country.flags.png : '';
-    const name = country.name ? country.name.common : '';
-    const nativeName = country.name ? country.name.native : '';
-    const population = country.population ? country.population.toLocaleString() : '';
+    const flag = country.flags?.png;
+    const name = country.name;
+    const nativeName = country.nativeName;
+    const population = country.population?.toLocaleString();
     const region = country.region;
     const subRegion = country.subregion;
-    const capital = country.capital ? country.capital.join(', ') : '';
-    const topLevelDomain = country.tld ? country.tld.join(', ') : '';
-    const currencies = country.currencies ? Object.values(country.currencies).join(', ') : '';
-    const languages = country.languages ? Object.values(country.languages).join(', ') : '';
-    const borders = country.borders;
+    const capital = country.capital;
+    const topLevelDomain = country.topLevelDomain?.join(', ');
+    const currencies = country.currencies?.map(curr => curr.name).join(', ');
+    const languages = country.languages?.map(lang => lang.name).join(', ');
+    const borderCountries = country.borderCountries;
     // UI Elements
-    const countryFlagImage = document.getElementById('country-flag');
+    const flagImage = document.getElementById('country-flag');
     const countryNameElement = document.getElementById('country-name');
     const countryDetailsContainer = document.getElementById('country-details');
     const borderCountriesContainer = document.getElementById('border-countries');
-    
+
     // Populate UI elements with data
-    countryFlagImage.src = flag;
-    countryFlagImage.alt = `Flag of ${name}`;
+    flagImage.src = flag;
+    flagImage.alt = `Flag of ${name}`;
 
     countryNameElement.innerText = name;
 
@@ -58,8 +76,11 @@ function populateUI() {
         </ul>
     `;
 
-    const borderCountriesList = createBorderCountriesList(borders);
-    borderCountriesContainer.appendChild(borderCountriesList);
-}       
+    if (borderCountries) {
+        borderCountriesContainer.innerHTML = "<p>Border Countries: </p>";
+        const borderCountriesList = createBorderCountriesList(borderCountries);
+        borderCountriesContainer.appendChild(borderCountriesList);
+    }
+}
 
-populateUI();
+retriveCountryData();

@@ -10,6 +10,7 @@ let selectedRegion;
 function retriveCountriesAndPopulateUI() {
     fetchAllCountries().then(fetchedCountries => {
         if (fetchedCountries) {
+            console.log(fetchedCountries);
             countries = fetchedCountries;
             populateCountriesGrid(countries);
         }
@@ -18,7 +19,7 @@ function retriveCountriesAndPopulateUI() {
 
 function filterCountries() {
     return countries.filter(country => {
-        const name = country.name.common.toLowerCase();
+        const name = country.name.toLowerCase();
         const region = country.region.toLowerCase();
         if (selectedRegion) {
             return region == selectedRegion && name.includes(searchQuery);

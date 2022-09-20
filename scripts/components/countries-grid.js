@@ -1,19 +1,19 @@
 const countriesGrid = document.getElementById('countries-grid');
 
 function handleCountryClick(country) {
-    // Save country object to session storage to be retrived in details page
-    const jsonCountry = JSON.stringify(country);
-    sessionStorage.setItem('country', jsonCountry);
+    const code = country.alpha3Code;
+    // Save country code to session storage to be retrived in details page
+    sessionStorage.setItem('country-code', code);
     // Navigate to detials page
     window.location.href = '/details.html';
 }
 
 function createCountryElement(country) {
-    const flag = country.flags && country.flags.png ? country.flags.png : '';
-    const name = country.name && country.name.common ? country.name.common : '';
-    const population = country.population ? country.population.toLocaleString() : '';
-    const region = country.region ? country.region : '';
-    const capital = country.capital ? country.capital.join(', ') : '';
+    const flag = country.flags?.png;
+    const name = country.name;
+    const population = country.population?.toLocaleString();
+    const region = country.region;
+    const capital = country.capital;
 
     const card = document.createElement('a');
     card.classList.add('country-card-wrapper');

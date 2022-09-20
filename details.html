@@ -18,7 +18,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="scripts/app.js" type="module"></script>
-    <script src="scripts/details.js" defer></script>
+    <script src="scripts/details.js" type="module"></script>
     <title>REST Countries</title>
   </head>
   <body class="details">
@@ -43,19 +43,12 @@
       </div>
       <section class="split">
         <div class="left">
-          <img
-            id="country-flag"
-            class="country-flag"
-            src="https://flagcdn.com/w320/ax.png"
-            alt=""
-          />
+          <img id="country-flag" class="country-flag" alt=""/>
         </div>
         <div class="right">
-          <h2 id="country-name" class="country-name">Belgium</h2>
+          <h2 id="country-name" class="country-name"></h2>
           <div id="country-details" class="country-details-container"></div>
-          <div id="border-countries" class="border-countries">
-            <p>Border Countries:</p>
-          </div>
+          <div id="border-countries" class="border-countries"></div>
         </div>
       </section>
     </main>
