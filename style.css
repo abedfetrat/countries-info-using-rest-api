@@ -333,6 +333,12 @@ img {
   padding-bottom: 60px;
 }
 
+@media screen and (min-width: 768px) {
+  .details .main-content {
+    padding-block: 80px;
+  }
+}
+
 .details .back-navigation {
   display: inline-flex;
   align-items: center;
@@ -348,25 +354,81 @@ img {
   text-decoration: none;
 }
 
+@media screen and (min-width: 768px) {
+  .details .back-navigation {
+    padding: 10px 32px;
+    column-gap: 10px;
+    font-size: 16px;
+  }
+}
+
 .details .split {
-  display: grid;
-  row-gap: 44px;
+  display: flex;
+  flex-direction: column;
+  column-gap: 48px;
+  row-gap: 48px;
   margin-top: 64px;
 }
 
+@media screen and (min-width: 1272px) {
+  .details .split {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.details .left {
+  width: min(100%, 400px);
+  margin-inline: auto;
+}
+
+.details .right {
+  width: min(100%, 600px);
+  margin-inline: auto;
+}
+
+@media screen and (min-width: 1272px) {
+  .details .left,
+  .details .right {
+    margin-inline: unset;
+  }
+  .details .left {
+    flex-grow: 1;
+    max-width: 560px;
+  }
+}
+
 .details .country-flag {
-  border-radius: 5px;
+  width: 100%;
+  aspect-ratio: 320/229;
+  border-radius: 10px;
 }
 
 .details .country-name {
+  width: fit-content;
   font-size: 22px;
+}
+
+@media screen and (min-width: 768px) {
+  .details .country-name {
+    font-size: 32px;
+  }
 }
 
 .details .country-details-container {
   display: flex;
-  flex-direction: column;
-  row-gap: 32px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 32px;
+  width: 100%;
   margin-top: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .details .country-details-container {
+    font-size: 16px;
+  }
 }
 
 .details .country-details-container li:not(first-of-type) {
@@ -379,9 +441,16 @@ img {
 
 .details .border-countries {
   display: flex;
-  flex-direction: column;
-  row-gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
   margin-top: 34px;
+}
+
+@media screen and (min-width: 768px) {
+  .details .border-countries {
+    margin-top: 68px;
+  }
 }
 
 .details .border-countries p {
