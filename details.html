@@ -18,6 +18,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="scripts/app.js" type="module"></script>
+    <script src="scripts/details.js" defer></script>
     <title>REST Countries</title>
   </head>
   <body class="details">
@@ -43,34 +44,17 @@
       <section class="split">
         <div class="left">
           <img
+            id="country-flag"
             class="country-flag"
             src="https://flagcdn.com/w320/ax.png"
             alt=""
           />
         </div>
         <div class="right">
-          <h2 class="country-name">Belgium</h2>
-          <div class="country-details-container">
-            <ul>
-              <li><span>Native Name: </span>Belgie</li>
-              <li><span>Population: </span>81,231,552</li>
-              <li><span>Region: </span>Europe</li>
-              <li><span>Sub Region: </span>Western Europe</li>
-              <li><span>Capital: </span>Brussels</li>
-            </ul>
-            <ul>
-              <li><span>Top Level Domain: </span>.be</li>
-              <li><span>Currencies: </span>Euro</li>
-              <li><span>Languages: </span>Danish, turkish, english</li>
-            </ul>
-          </div>
-          <div class="border-countries">
-            <p>Border Countries: </p>
-            <ul>
-                <li>France</li>
-                <li>Germany</li>
-                <li>Netherlands</li>
-            </ul>
+          <h2 id="country-name" class="country-name">Belgium</h2>
+          <div id="country-details" class="country-details-container"></div>
+          <div id="border-countries" class="border-countries">
+            <p>Border Countries:</p>
           </div>
         </div>
       </section>
