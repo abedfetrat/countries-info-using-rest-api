@@ -24,7 +24,7 @@ export async function fetchAllCountries() {
     }
 }
 
-export async function fetchCountriesByCode(codes) {
+async function fetchCountriesByCode(codes) {
     const alphaEndpoint = '/alpha';
     let searchParams = '?codes=';
 
@@ -50,8 +50,12 @@ export async function fetchCountryByCode(code) {
     try {
         const response = await fetch(urlToFetch);
         if (response.ok) {
-            const countries = await response.json();
-            return countries;
+            const country = await response.json();
+            if (country.borders) {
+                const borderCountries = await fetchCountriesByCode(country.borders);
+                country.borderCountries = borderCountries;
+            }
+            return country;
         }
     } catch (error) {
         console.error(error);
