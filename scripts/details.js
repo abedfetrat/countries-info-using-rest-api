@@ -63,8 +63,6 @@ function populateUI() {
             </ul>
         `;
     }
-
-    document.body.classList.remove('is-loading');
 }
 
 retriveCountryDataAndPopulateUI();
