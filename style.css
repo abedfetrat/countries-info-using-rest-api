@@ -467,6 +467,7 @@ img {
 }
 
 .details .border-countries li {
+  cursor: pointer;
   padding: 6px 24px;
   border-radius: 2px;
   background-color: var(--clr-primary);
