@@ -8,13 +8,20 @@ let searchQuery = '';
 let selectedRegion;
 
 function retriveCountriesAndPopulateUI() {
-    fetchAllCountries().then(fetchedCountries => {
-        if (fetchedCountries) {
-            console.log(fetchedCountries);
-            countries = fetchedCountries;
-            populateCountriesGrid(countries);
-        }
-    });
+    const savedCountries = sessionStorage.getItem('countries');
+    if (savedCountries) {
+        countries = JSON.parse(savedCountries);
+        populateCountriesGrid(countries);
+    } else {
+        fetchAllCountries().then(fetchedCountries => {
+            if (fetchedCountries) {
+                countries = fetchedCountries;
+                populateCountriesGrid(countries);
+                const countriesJSON = JSON.stringify(countries);
+                sessionStorage.setItem('countries', countriesJSON);
+            }
+        });
+    }
 }
 
 function filterCountries() {

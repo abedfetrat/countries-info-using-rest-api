@@ -1,15 +1,18 @@
-import { fetchCountryByCode } from "./api.js";
-
 let country;
 
-function retriveCountryData() {
-    const countryCode = sessionStorage.getItem('country-code');
-    fetchCountryByCode(countryCode).then(fetchedCountry => {
-        if (fetchedCountry) {
-            country = fetchedCountry;
-            populateUI();
-        }
-    });
+function retriveCountryDataAndPopulateUI() {
+    const countryJSON = sessionStorage.getItem('country');
+    country = JSON.parse(countryJSON);
+    const borders = country.borders;
+    if (borders) {
+        const countriesJSON = sessionStorage.getItem('countries');
+        const countries = JSON.parse(countriesJSON);
+        const borderCountries = countries.filter(country => {
+            return borders.includes(country.alpha3Code) || borders.includes(country.alpha2Code);
+        });
+        country.borderCountries = borderCountries;
+    }
+    populateUI();
 }
 
 function populateUI() {
@@ -64,4 +67,4 @@ function populateUI() {
     document.body.classList.remove('is-loading');
 }
 
-retriveCountryData();
+retriveCountryDataAndPopulateUI();

@@ -1,9 +1,9 @@
 const countriesGrid = document.getElementById('countries-grid');
 
 function handleCountryClick(country) {
-    const code = country.alpha3Code;
-    // Save country code to session storage to be retrived in details page
-    sessionStorage.setItem('country-code', code);
+    // Save country to session storage to be retrived in details page
+    const countryJSON = JSON.stringify(country);
+    sessionStorage.setItem('country', countryJSON);
     // Navigate to detials page
     window.location.href = '/details.html';
 }
