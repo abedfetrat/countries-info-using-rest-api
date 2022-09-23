@@ -5,7 +5,7 @@ function handleCountryClick(country) {
     const countryJSON = JSON.stringify(country);
     sessionStorage.setItem('country', countryJSON);
     // Navigate to detials page
-    window.location.href = '/details.html';
+    window.location.href = './details.html';
 }
 
 function createCountryElement(country) {
