@@ -79,6 +79,37 @@ img {
   padding-inline: var(--page-margin);
 }
 
+.scroll-to-top {
+  cursor: pointer;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  background-color: hsla(216, 89%, 72%, 1);
+  color: hsl(0, 0%, 100%);
+  font-size: 16px;
+  line-height: 64px;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 250ms ease-in-out, opacity 250ms ease;
+}
+
+.scroll-to-top.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media screen and (min-width: 768px) {
+  .scroll-to-top {
+    bottom: 24px;
+    right: 24px;
+  }
+}
+
 /* ------------------ Home Page ------------------ */
 
 /* Page Header */
