@@ -151,10 +151,10 @@ img {
 .theme-toggle__light {
   display: none;
 }
-[data-theme="dark"] .theme-toggle__light {
+.dark-mode .theme-toggle__light {
   display: block;
 }
-[data-theme="dark"] .theme-toggle__dark {
+.dark-mode .theme-toggle__dark {
   display: none;
 }
 @media screen and (min-width: 768px) {
