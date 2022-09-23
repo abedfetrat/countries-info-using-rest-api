@@ -297,6 +297,7 @@ img {
 @media screen and (min-width: 634px) {
   .countries-grid {
     grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
+    row-gap: 74px;
   }
 }
 @media screen and (min-width: 768px) {
@@ -335,6 +336,9 @@ img {
   margin-bottom: 16px;
   font-size: 18px;
   line-height: 26px;
+}
+.country-card__facts li {
+  line-height: 16px;
 }
 .country-card__facts li:not(first-of-type) {
   margin-top: 8px;
