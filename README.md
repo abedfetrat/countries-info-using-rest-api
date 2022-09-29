@@ -35,8 +35,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Check out the solution here](https://www.frontendmentor.io/solutions/countries-rest-api-built-with-vanilla-javascript-bVCP9LYGll)
+- Live Site URL: [Check out the live site here](https://abedfetrat.github.io/countries-info-using-rest-api/)
 
 ## My process
 
